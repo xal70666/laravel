@@ -11,10 +11,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -24,5 +24,20 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function uploadfile(){
+      return view("uploadfile");
+    }
+
+    public function uploadfilepost(Request $request){
+      $this->validate($request, [
+        'fileToUpload' => 'required|file|max:1024',
+      ]);
+
+      $request->fileToUpload->store('logos');
+
+      return back()
+              ->with('success', 'Berhasil upload');
     }
 }
