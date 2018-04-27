@@ -12,11 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/uploadfile', 'HomeController@uploadfile')->name('uploadfile');
-Route::post('/uploadfile', 'HomeController@uploadfilepost')->name('uploadfilepost');
+Route::get('/uploadfile', 'WebController@uploadfile')->name('uploadfile');
+Route::post('/uploadfile', 'WebController@uploadfilepost')->name('uploadfilepost');
+
+Auth::routes();
+
+Route::get('/works-details', 'HomeController@workDetails')->name('works-details');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
